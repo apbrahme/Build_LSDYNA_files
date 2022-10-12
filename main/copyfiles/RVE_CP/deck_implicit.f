@@ -5,7 +5,7 @@ $ Units in TON, MM, S, N, MPA, TON/MM^3
 $
 $ - - - - - - - - - - 
 *PARAMETER
-  i IMPLCT         0
+  i IMPLCT         1
   r   TEND   150.000
   r  DTMAX       0.1
   r   APPV    0.0005
@@ -15,7 +15,7 @@ $ - - - - - - - - - -
   i    NHV       180
   i    LMC        24
 $ - - - - - - - - - -
-  r     RO   2.70e+4
+  r     RO   2.70e-9
   r     G0     26250
   r     K0     70000
   r    C11  124329.6

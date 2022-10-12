@@ -1,21 +1,29 @@
-clear; clc; close all;
+%clear; clc; close all;
+function y = generate_model_3D(fname,dir,dim,fsig)
+
 addpath('./main')
 
 %% INITIALIZE
 % NT: number of elements per side
 % A:  length per side
-ntx = 50;
-nty = 50;
-ntz = 50;
+% ntx = 50;
+% nty = 50;
+% ntz = 50;
+ntx = dim;
+nty = dim;
+ntz = dim;
 ax = 1.0;
 ay = 1.0;
 az = 1.0;
 
 % Define folder name (to generate)
-FOLDER = 'cent_50';
+FOLDER = dir;%'test';
 
 % Define texture to use
-TEXTURE = 'PF_125000';
+TEXTURE = fname;%'PF_8000';
+
+% Failure stress (von-mises)
+%fsig = 500;
 
 
 %% COPY base files 
@@ -44,11 +52,12 @@ write_csf(FOLDER, face)
 
 % Write material file
 write_umat_RVE_CP(FOLDER, crystals)
+write_erosion_eps(FOLDER, crystals, fsig)
 
 % Write simulation files
 copyfile(fullfile(base_dir,'RVE_CP'),FOLDER)
     
-
+end
 
 
 
