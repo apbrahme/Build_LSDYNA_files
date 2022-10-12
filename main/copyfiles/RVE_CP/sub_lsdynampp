@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --job-name=DYNA_CP              # Job Name
+#SBATCH --partition=WORK.Q              # Queue Name
+#SBATCH --nodes=1                       # Number of Nodes 
+#SBATCH --ntasks-per-node=16            # Number of CPUs per Node
+
+module load lsdyna                      # Needed to Run LS-DYNA
+module load intelmpi-2018.4.274         # Needed to Run MPP
+module load intel                       # Needed to Run UMAT-versions
+
+export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
+
+app=$SCRATCH/EXECUTABLES/9.3.0doubleumat_CP_Implicit/mppdyna
+#app=$SCRATCH/EXECUTABLES/9.3.1doubleumat_CPTaylor/mppdyna
+input=deck.f
+output=run.log
+
+srun $app i=$input &> $output
